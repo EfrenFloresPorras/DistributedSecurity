@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Threat Log Service</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <h1>🛡️ Threat Logging Service</h1>
+
+  <button onclick="loadEvents()">Load Events</button>
+
+  <h3>Events:</h3>
+  <pre id="events"></pre>
+
+  <script>
+    async function loadEvents() {
+      const res = await fetch("http://localhost:8081/events");
+      const data = await res.json();
+      document.getElementById("events").innerText = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
