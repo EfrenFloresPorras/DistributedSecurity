@@ -34,12 +34,13 @@ Todos los servicios se registran dinámicamente en **Consul**, reportan su estad
 ▼
 [ThreatLog Service :8081]
 
-````
+```
 
 ---
 
 ## 📦 Requisitos previos
 
+```markdown
 - **Go 1.23+**
 - **Docker**
 - **Minikube + kubectl**
@@ -48,7 +49,7 @@ Todos los servicios se registran dinámicamente en **Consul**, reportan su estad
   sudo apt install -y protobuf-compiler
   go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
   go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-````
+```
 
 ---
 
