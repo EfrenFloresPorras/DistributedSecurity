@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consul
+  labels: { app: consul }
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: consul }
+  template:
+    metadata:
+      labels: { app: consul }
+    spec:
+      containers:
+        - name: consul
+          image: consul:1.15.4
+          args: ["agent","-server","-bootstrap","-ui","-client=0.0.0.0"]
+          ports:
+            - containerPort: 8500
+              name: http
+          readinessProbe:
+            httpGet: { path: /v1/status/leader, port: 8500 }
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          resources:
+            requests: { cpu: "100m", memory: "128Mi" }
+            limits:   { cpu: "300m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: consul
+  labels: { app: consul }
+spec:
+  type: ClusterIP
+  selector: { app: consul }
+  ports:
+    - name: http
+      port: 8500
+      targetPort: 8500

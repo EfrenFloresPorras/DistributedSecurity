@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: threatlog-deploy
+  labels:
+    app: threatlog
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: threatlog
+  template:
+    metadata:
+      labels:
+        app: threatlog
+    spec:
+      containers:
+        - name: threatlog
+          image: threatlog-service:local
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: CONSUL_HTTP_ADDR
+              value: "http://consul:8500"
+          ports:
+            - containerPort: 8081
+          readinessProbe:
+            tcpSocket:
+              port: 8081
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:
+            tcpSocket:
+              port: 8081
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "300m"
+              memory: "128Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: threatlog-svc
+  labels:
+    app: threatlog
+spec:
+  type: ClusterIP
+  selector:
+    app: threatlog
+  ports:
+    - name: grpc
+      port: 8081
+      targetPort: 8081
