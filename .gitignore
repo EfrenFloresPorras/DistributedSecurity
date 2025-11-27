@@ -31,4 +31,12 @@ go.work.sum
 # .idea/
 # .vscode/
 
+
+# Append ignore rules for Kubernetes binaries
+
+# Kubernetes binaries (don't commit)
 kubectl
+kubectl.exe
+minikube
+minikube-*
+minikube-linux-*
