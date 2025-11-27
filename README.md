@@ -1,11 +1,5 @@
-Perfecto 🚀 Efren, aquí tienes un **README.md profesional y claro** para tu entrega y para guiar la presentación del 26 de noviembre.
-Incluye: descripción, estructura, despliegue con `make`, y pruebas de los endpoints gRPC.
 
----
 
-## 📄 `README.md`
-
-```markdown
 # DistributedSecurity – Distributed Computing
 
 **Autor:** Efren Flores Porras  
