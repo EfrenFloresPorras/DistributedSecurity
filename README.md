@@ -227,9 +227,3 @@ Este proyecto demuestra un sistema distribuido simple con:
 * Escalabilidad horizontal mediante réplicas.
 
 ```
-
-
----
-
-¿Quieres que le agregue también un **diagrama visual del flujo** (Auth → Policy → ThreatLog) en formato `.png` o `.drawio` para incluirlo en el README y mostrarlo en tu presentación?
-```
